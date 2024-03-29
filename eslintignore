@@ -1,0 +1,26 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore distribution files
+dist/
+
+# Ignore package lock file
+package-lock.json
+
+# Ignore minified JavaScript files
+*.min.js
+
+# Ignore coverage reports
+coverage/
+
+# Ignore build directory
+build/
+
+# Ignore public directory
+public/
+
+# Ignore Markdown files
+*.md
+
+# Ignore VSCode settings directory
+.vscode/

@@ -1,0 +1,34 @@
+# Dependency directories
+node_modules/
+
+# Environment files
+.env
+
+# Security files
+*.pem
+*.key
+
+# Log files
+npm-debug.log
+*.log
+
+# Build directories
+dist/
+build/
+lib/
+
+# TypeScript compiler output
+*.js.map
+*.d.ts
+
+# Coverage directory
+coverage/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.vscode/
+.idea/
+*.sublime-workspace
