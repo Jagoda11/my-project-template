@@ -1,5 +1,23 @@
 # Dependency directories
 node_modules/
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local*
+*.localdev*
+*.local_dev*
+*.dev*
+*.development*
+*.prod*
+*.production*
+*.staging*
+*.test*
+*.tests*
+*.testing*
+*.sandbox*
+*.sandboxing*
+*.sandboxed*
 
 # Environment files
 .env
@@ -8,9 +26,14 @@ node_modules/
 *.pem
 *.key
 
-# Log files
-npm-debug.log
-*.log
+# Logs
+logs
+*.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # Build directories
 dist/
@@ -29,6 +52,79 @@ coverage/
 Thumbs.db
 
 # IDE-specific files
-.vscode/
-.idea/
+# Editor directories and files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+.idea
+.idea/*
+*.iws
+*.iml
+*.ipr
+*.suo
+*.sln
+*.sw?
+*.bak
+*.tmp
 *.sublime-workspace
+*.sublime-project
+*.sublime-*
+*.komodoproject
+.komodotools
+.komodoproject
+*.ntvs*
+*.njsproj
+*.sln.docstates
+*.user
+*.userosscache
+
+*.tsbuildinfo*
+
+test-results/
+playwright-report/
+jest-report/
+
+# Dependency directories
+
+cypress-report/
+cypress-screenshots/
+cypress-videos/
+cypress-logs/
+cypress-coverage/
+cypress-debug.log
+cypress-error.log
+cypress-mocharc.json
+cypress.json
+cypress.env.json
+cypress.env.local.json
+cypress.env.ci.json
+cypress.env.staging.json
+cypress.env.production.json
+cypress.env.development.json
+cypress.env.test.json
+cypress.env.qa.json
+cypress.env.staging.json
+cypress.env.sandbox.json
+
+
+# Vite build output
+/build/
+/.vite/
+
+#lighthouse generated files
+/lighthouse/
+lighthouse-report.html
+lighthouse-error.html
+chromewebdata_*.report.html
+lighthouse.report.html
+lighthouse.report.json
+localhost_*.report.html
+localhost_*.report.json
+
+# Jest test artifacts
+/jest-tests/output/
+/jest-tests/results/
+/jest-tests/screenshots/
