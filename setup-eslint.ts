@@ -378,7 +378,7 @@ async function setupFrontend() {
     } else if (framework === 'vue') {
       await executeCommand('npm install vue', './frontend')
       await executeCommand(
-        'npm install --save-dev @vue/cli eslint-plugin-vue vite',
+        'npm install --save-dev eslint-plugin-vue vite',
         './frontend',
       )
       const viteConfigContent = `
@@ -392,6 +392,7 @@ async function setupFrontend() {
         `
 
       fs.writeFileSync('./frontend/vite.config.js', viteConfigContent)
+      console.log('📝 Created vite.config.js in ./frontend')
     }
   } catch (error) {
     console.error(`❌ Error setting up frontend: ${error}`)
