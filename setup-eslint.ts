@@ -39,54 +39,54 @@ function setupEslintAndTsconfig(
     let eslintContent = 'extends: eslint:recommended'
     if (dir === './backend') {
       eslintContent = `
-      env:
-      node: true
-      es2021: true
-      jest: true
-    extends:
-      - eslint:recommended
-      - plugin:@typescript-eslint/recommended
-      - plugin:jest/recommended
-      - plugin:import/errors
-      - plugin:import/warnings
-      - plugin:prettier/recommended
-    parser: '@typescript-eslint/parser'
-    parserOptions:
-      ecmaVersion: latest
-      sourceType: 'module'
-    plugins:
-      - '@typescript-eslint'
-      - jest 
-      - import
-    rules:
-      'prettier/prettier': 'error'
-      'no-shadow': 'error'
-      'eqeqeq':
-        - 'error'
-        - 'always'
-      'curly':
-        - 'error'
-        - 'all'
-      'no-unused-vars': 'warn'
-      'no-redeclare': 'error'
-      'prefer-const': 'error'
-      'no-var': 'error'
-      'global-require': 'warn'
-      'handle-callback-err': 'warn'
-      'no-buffer-constructor': 'warn'
-      'no-new-require': 'warn'
-      'no-path-concat': 'warn'
-      '@typescript-eslint/no-explicit-any': 'warn'
-      'import/order':
-        - 'error'
-        - groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
-          newlines-between: 'always'
-          alphabetize:
-            order: 'asc'
-            caseInsensitive: true
-      'consistent-return': 'error'
-      'no-unused-expressions': 'warn'
-      'no-useless-constructor': 'warn'
+  env:
+    node: true
+    es2021: true
+    jest: true
+  extends:
+    - eslint:recommended
+    - plugin:@typescript-eslint/recommended
+    - plugin:jest/recommended
+    - plugin:import/errors
+    - plugin:import/warnings
+    - plugin:prettier/recommended
+  parser: '@typescript-eslint/parser'
+  parserOptions:
+    ecmaVersion: latest
+    sourceType: 'module'
+  plugins:
+    - '@typescript-eslint'
+    - jest 
+    - import
+  rules:
+    'no-shadow': 'error'
+    'prettier/prettier': 'error'
+    'eqeqeq':
+      - 'error'
+      - 'always'
+    'curly':
+      - 'error'
+      - 'all'
+    'no-unused-vars': 'warn'
+    'no-redeclare': 'error'
+    'prefer-const': 'error'
+    'no-var': 'error'
+    'global-require': 'warn'
+    'handle-callback-err': 'warn'
+    'no-buffer-constructor': 'warn'
+    'no-new-require': 'warn'
+    'no-path-concat': 'warn'
+    '@typescript-eslint/no-explicit-any': 'warn'
+    'import/order':
+      - 'error'
+      - groups: ['builtin', 'external', 'internal','parent', 'sibling', 'index']
+        newlines-between: 'always'
+        alphabetize:
+          order: 'asc'
+          caseInsensitive: true
+    'consistent-return': 'error'
+    'no-unused-expressions': 'warn'
+    'no-useless-constructor': 'warn'
       `
     } else if (dir === './frontend') {
       if (framework === 'react') {
@@ -111,20 +111,20 @@ plugins:
   - prettier 
   - react-hooks
 rules:
-prettier/prettier: 'error'  # Enforce Prettier formatting
-react/jsx-filename-extension:
-  - 1
-  - { extensions: ['.tsx'] }  # Enforce the use of .tsx extension for JSX files
-react/react-in-jsx-scope: 'off'  # Not needed with React 17+
-'@typescript-eslint/explicit-module-boundary-types': 'warn'  # Ensure functions have explicit return types
-'@typescript-eslint/no-unused-vars': 'warn'  # Warn about unused variables
-'@typescript-eslint/no-explicit-any': 'warn'  # Warn about usage of the any type
-'no-console': 'warn'  # Warn about console usage
-'jest/no-disabled-tests': 'warn'  # Warn about disabled tests
-'jest/no-focused-tests': 'error'  # Error on focused tests
-'jest/no-identical-title': 'error'
-react-hooks/rules-of-hooks: 'error'
-react-hooks/exhaustive-deps: 'warn'
+  prettier/prettier: 'error'  # Enforce Prettier formatting
+  react/jsx-filename-extension:
+    - 1
+    - { extensions: ['.tsx'] }  # Enforce the use of .tsx extension for JSX files
+  react/react-in-jsx-scope: 'off'  # Not needed with React 17+
+  '@typescript-eslint/explicit-module-boundary-types': 'warn'  # Ensure functions have explicit return types
+  '@typescript-eslint/no-unused-vars': 'warn'  # Warn about unused variables
+  '@typescript-eslint/no-explicit-any': 'warn'  # Warn about usage of the any type
+  'no-console': 'warn'
+  'jest/no-disabled-tests': 'warn'  # Warn about disabled tests
+  'jest/no-focused-tests': 'error'  # Error on focused tests
+  'jest/no-identical-title': 'error'
+  react-hooks/rules-of-hooks: 'error'
+  react-hooks/exhaustive-deps: 'warn'
         `
       } else if (framework === 'angular') {
         eslintContent = `
@@ -365,7 +365,7 @@ async function setupFrontend() {
 
     if (framework === 'react') {
       await executeCommand(
-        'npm install react react-dom @types/react @types/react-dom eslint-plugin-react-hooks',
+        'npm install react react-dom @types/react @types/react-dom eslint-plugin-react eslint-plugin-react-hooks',
         './frontend',
       )
     } else if (framework === 'angular') {
