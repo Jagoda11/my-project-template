@@ -39,54 +39,54 @@ function setupEslintAndTsconfig(
     let eslintContent = 'extends: eslint:recommended'
     if (dir === './backend') {
       eslintContent = `
-env:
-  node: true
-  es2021: true
-  jest: true
-extends:
-  - eslint:recommended
-  - plugin:@typescript-eslint/recommended
-  - plugin:jest/recommended
-  - plugin:import/errors
-  - plugin:import/warnings
-  - plugin:prettier/recommended
-parser: '@typescript-eslint/parser'
-parserOptions:
-  ecmaVersion: latest
-  sourceType: 'module'
-plugins:
-  - '@typescript-eslint'
-  - jest 
-  - import
-  rules:
-    'prettier/prettier': 'error'
-    'no-shadow': 'error'
-    'eqeqeq':
-      - 'error'
-      - 'always'
-    'curly':
-      - 'error'
-      - 'all'
-    'no-unused-vars': 'warn'
-    'no-redeclare': 'error'
-    'prefer-const': 'error'
-    'no-var': 'error'
-    'global-require': 'warn'
-    'handle-callback-err': 'warn'
-    'no-buffer-constructor': 'warn'
-    'no-new-require': 'warn'
-    'no-path-concat': 'warn'
-    '@typescript-eslint/no-explicit-any': 'warn'
-    'import/order':
-      - 'error'
-      - groups: ['builtin', 'external', 'internal',   'parent', 'sibling', 'index']
-        newlines-between: 'always'
-        alphabetize:
-          order: 'asc'
-          caseInsensitive: true
-    'consistent-return': 'error'
-    'no-unused-expressions': 'warn'
-    'no-useless-constructor': 'warn'
+      env:
+      node: true
+      es2021: true
+      jest: true
+    extends:
+      - eslint:recommended
+      - plugin:@typescript-eslint/recommended
+      - plugin:jest/recommended
+      - plugin:import/errors
+      - plugin:import/warnings
+      - plugin:prettier/recommended
+    parser: '@typescript-eslint/parser'
+    parserOptions:
+      ecmaVersion: latest
+      sourceType: 'module'
+    plugins:
+      - '@typescript-eslint'
+      - jest 
+      - import
+    rules:
+      'prettier/prettier': 'error'
+      'no-shadow': 'error'
+      'eqeqeq':
+        - 'error'
+        - 'always'
+      'curly':
+        - 'error'
+        - 'all'
+      'no-unused-vars': 'warn'
+      'no-redeclare': 'error'
+      'prefer-const': 'error'
+      'no-var': 'error'
+      'global-require': 'warn'
+      'handle-callback-err': 'warn'
+      'no-buffer-constructor': 'warn'
+      'no-new-require': 'warn'
+      'no-path-concat': 'warn'
+      '@typescript-eslint/no-explicit-any': 'warn'
+      'import/order':
+        - 'error'
+        - groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
+          newlines-between: 'always'
+          alphabetize:
+            order: 'asc'
+            caseInsensitive: true
+      'consistent-return': 'error'
+      'no-unused-expressions': 'warn'
+      'no-useless-constructor': 'warn'
       `
     } else if (dir === './frontend') {
       if (framework === 'react') {
