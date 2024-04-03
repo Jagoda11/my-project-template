@@ -364,8 +364,9 @@ async function setupFrontend() {
     )
 
     if (framework === 'react') {
+      await executeCommand('npm install react react-dom', './frontend')
       await executeCommand(
-        'npm install react react-dom @types/react @types/react-dom eslint-plugin-react eslint-plugin-react-hooks',
+        'npm install --save-dev @types/react @types/react-dom eslint-plugin-react eslint-plugin-react-hooks',
         './frontend',
       )
     } else if (framework === 'angular') {
