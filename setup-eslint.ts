@@ -162,7 +162,7 @@ rules:
         // eslintContent for Angular
       } else if (framework === 'vue') {
         eslintContent = `
-        env:
+env:
   browser: true
   es2021: true
   jest: true
@@ -377,6 +377,10 @@ async function setupFrontend() {
       )
     } else if (framework === 'vue') {
       await executeCommand('npm install vue@next', './frontend')
+      await executeCommand(
+        'npm install --save-dev @vue/cli eslint-plugin-vue',
+        './frontend',
+      )
     }
   } catch (error) {
     console.error(`❌ Error setting up frontend: ${error}`)
