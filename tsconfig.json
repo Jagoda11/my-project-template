@@ -1,14 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "emitDeclarationOnly": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "lib": ["esnext", "dom"],
+    "typeRoots": ["node_modules/@types"],
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "allowJs": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*"]
 }

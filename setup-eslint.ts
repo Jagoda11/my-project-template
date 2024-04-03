@@ -58,35 +58,35 @@ plugins:
   - '@typescript-eslint'
   - jest 
   - import
-rules:
-prettier/prettier: error
-no-shadow: error
-eqeqeq:
-  - error
-  - always
-curly:
-  - error
-  - all
-no-unused-vars: warn
-no-redeclare: error
-prefer-const: error
-no-var: error
-global-require: warn
-handle-callback-err: warn
-no-buffer-constructor: warn
-no-new-require: warn
-no-path-concat: warn
-'@typescript-eslint/no-explicit-any': 'warn'
-'import/order':
-  - 'error'
-  - groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
-    newlines-between: 'always'
-    alphabetize:
-      order: 'asc'
-      caseInsensitive: true
-'consistent-return': 'error'
-'no-unused-expressions': 'warn'
-'no-useless-constructor': 'warn'
+  rules:
+    'prettier/prettier': 'error'
+    'no-shadow': 'error'
+    'eqeqeq':
+      - 'error'
+      - 'always'
+    'curly':
+      - 'error'
+      - 'all'
+    'no-unused-vars': 'warn'
+    'no-redeclare': 'error'
+    'prefer-const': 'error'
+    'no-var': 'error'
+    'global-require': 'warn'
+    'handle-callback-err': 'warn'
+    'no-buffer-constructor': 'warn'
+    'no-new-require': 'warn'
+    'no-path-concat': 'warn'
+    '@typescript-eslint/no-explicit-any': 'warn'
+    'import/order':
+      - 'error'
+      - groups: ['builtin', 'external', 'internal',   'parent', 'sibling', 'index']
+        newlines-between: 'always'
+        alphabetize:
+          order: 'asc'
+          caseInsensitive: true
+    'consistent-return': 'error'
+    'no-unused-expressions': 'warn'
+    'no-useless-constructor': 'warn'
       `
     } else if (dir === './frontend') {
       if (framework === 'react') {
@@ -109,6 +109,7 @@ plugins:
   - '@typescript-eslint'
   - jest
   - prettier 
+  - react-hooks
 rules:
 prettier/prettier: 'error'  # Enforce Prettier formatting
 react/jsx-filename-extension:
@@ -122,6 +123,8 @@ react/react-in-jsx-scope: 'off'  # Not needed with React 17+
 'jest/no-disabled-tests': 'warn'  # Warn about disabled tests
 'jest/no-focused-tests': 'error'  # Error on focused tests
 'jest/no-identical-title': 'error'
+react-hooks/rules-of-hooks: 'error'
+react-hooks/exhaustive-deps: 'warn'
         `
       } else if (framework === 'angular') {
         eslintContent = `
@@ -205,12 +208,12 @@ rules:
   }
 
   if (!fs.existsSync(`${dir}/${tsconfigName}`)) {
-    let tsconfigContent = '{ "compilerOptions": { "target": "es5" } }'
+    let tsconfigContent = '{ "compilerOptions": { "target": "ESNext" } }'
     if (tsconfigName === 'tsconfig.backend.json') {
       tsconfigContent = JSON.stringify(
         {
           compilerOptions: {
-            target: 'ES2022',
+            target: 'ESNext',
             module: 'CommonJS',
             strict: true,
             outDir: './dist',
@@ -234,7 +237,7 @@ rules:
         tsconfigContent = JSON.stringify(
           {
             compilerOptions: {
-              target: 'ES2020',
+              target: 'ESNext',
               module: 'ESNext',
               lib: ['DOM', 'DOM.Iterable', 'ESNext'],
               allowJs: true,
@@ -259,7 +262,7 @@ rules:
         tsconfigContent = JSON.stringify(
           {
             compilerOptions: {
-              target: 'ES2020',
+              target: 'ESNext',
               module: 'ESNext',
               lib: ['DOM', 'ESNext'],
               allowJs: true,
@@ -285,7 +288,7 @@ rules:
         tsconfigContent = JSON.stringify(
           {
             compilerOptions: {
-              target: 'ES2020',
+              target: 'ESNext',
               module: 'ESNext',
               lib: ['DOM', 'ESNext'],
               allowJs: true,
@@ -362,7 +365,7 @@ async function setupFrontend() {
 
     if (framework === 'react') {
       await executeCommand(
-        'npm install react react-dom @types/react @types/react-dom',
+        'npm install react react-dom @types/react @types/react-dom eslint-plugin-react-hooks',
         './frontend',
       )
     } else if (framework === 'angular') {
