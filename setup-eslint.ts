@@ -169,7 +169,7 @@ env:
 extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
-  - plugin:vue/vue3-recommended  # or plugin:vue/recommended for Vue 2
+  - plugin:vue/vue3-recommended
   - plugin:jest/recommended
   - plugin:prettier/recommended
 parser: '@typescript-eslint/parser'
@@ -378,9 +378,20 @@ async function setupFrontend() {
     } else if (framework === 'vue') {
       await executeCommand('npm install vue', './frontend')
       await executeCommand(
-        'npm install --save-dev @vue/cli eslint-plugin-vue',
+        'npm install --save-dev @vue/cli eslint-plugin-vue vite',
         './frontend',
       )
+      const viteConfigContent = `
+      import { defineConfig } from 'vite'
+      import vue from '@vitejs/plugin-vue'
+      import typescript from '@rollup/plugin-typescript'
+      
+      export default defineConfig({
+        plugins: [vue(), typescript()],
+      })
+        `
+
+      fs.writeFileSync('./frontend/vite.config.js', viteConfigContent)
     }
   } catch (error) {
     console.error(`❌ Error setting up frontend: ${error}`)
