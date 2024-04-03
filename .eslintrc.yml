@@ -7,7 +7,6 @@ env:
 extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
-  - plugin:react/recommended
   - plugin:jest/recommended
   - plugin:import/errors
   - plugin:import/warnings
@@ -18,10 +17,8 @@ parserOptions:
   sourceType: module
 plugins:
   - '@typescript-eslint'
-  - react
   - jest
   - import
-  - react-hooks 
 rules:
   prettier/prettier: error
   eqeqeq:
@@ -41,27 +38,19 @@ rules:
   no-new-require: warn
   no-path-concat: warn
   '@typescript-eslint/no-explicit-any': 'warn'
-  'import/order':  # Ensures a consistent order of module imports
-    - 'error'
-    - groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
-      pathGroups:
-        - pattern: 'react'
-          group: 'external'
-          position: 'before'
-      pathGroupsExcludedImportTypes: ['react']
-      newlines-between: 'always'
-      alphabetize:
-        order: 'asc'
-        caseInsensitive: true
-  'consistent-return': 'error'  # Enforces consistent return in functions
-  'react-hooks/rules-of-hooks': 'error'  # Enforces the rules of Hooks
-  'react-hooks/exhaustive-deps': 'warn'  # Checks effect dependencies
-  'react/jsx-filename-extension': ['warn', { 'extensions': ['.jsx', '.tsx'] }]  # Enforce jsx and tsx file extensions for JSX files
+  'import/order':
+  - 'error'
+  - groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
+    pathGroups:
+      - pattern: '**'
+        group: 'external'
+        position: 'before'
+    newlines-between: 'always'
+    alphabetize:
+      order: 'asc'
+      caseInsensitive: true
+  'consistent-return': 'error'  # Enforces consistent return in functions extensions for JSX files
   'no-unused-expressions': 'warn'  # Avoid code that has no effect
-
-settings:
-  react:
-    version: detect
 
 overrides:
   - files:
