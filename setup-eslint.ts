@@ -376,7 +376,7 @@ async function setupFrontend() {
         './frontend',
       )
     } else if (framework === 'vue') {
-      await executeCommand('npm install vue@next', './frontend')
+      await executeCommand('npm install vue', './frontend')
       await executeCommand(
         'npm install --save-dev @vue/cli eslint-plugin-vue',
         './frontend',
