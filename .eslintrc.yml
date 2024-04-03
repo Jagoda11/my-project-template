@@ -32,6 +32,7 @@ rules:
     - all
   no-unused-vars: warn
   no-redeclare: error
+  no-shadow: error
   prefer-const: error
   no-var: error
   global-require: warn

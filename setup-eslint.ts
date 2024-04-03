@@ -315,13 +315,13 @@ rules:
 
 async function setupFrontend() {
   try {
-    const setupFrontend = await askQuestion(
+    const shouldSetupFrontend = await askQuestion(
       '🖥️ Do you want to setup a frontend (yes/no)? ',
     )
 
     if (
-      setupFrontend.toLowerCase() !== 'yes' &&
-      setupFrontend.toLowerCase() !== 'y'
+      shouldSetupFrontend.toLowerCase() !== 'yes' &&
+      shouldSetupFrontend.toLowerCase() !== 'y'
     ) {
       return
     }
@@ -377,13 +377,13 @@ async function setupFrontend() {
 
 async function setupBackend() {
   try {
-    const setupBackend = await askQuestion(
+    const shouldSetupBackend = await askQuestion(
       '🖥️ Do you want to setup a backend (yes/no)? ',
     )
 
     if (
-      setupBackend.toLowerCase() !== 'yes' &&
-      setupBackend.toLowerCase() !== 'y'
+      shouldSetupBackend.toLowerCase() !== 'yes' &&
+      shouldSetupBackend.toLowerCase() !== 'y'
     ) {
       return
     }
