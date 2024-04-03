@@ -1,6 +1,15 @@
 # 🚀 TypeScript Full-Stack Template
 
-This project is a template for setting up a full-stack TypeScript application with a Node.js backend 🟩 and your choice of frontend framework: React ⚛️, Angular 🅰️, or Vue 🟢. It includes pre-configured setups for Babel 🐵, TypeScript 🔵, ESLint 🛠️, Prettier 🖋️, Jest 🃏, and Husky 🐶.
+This project is a template for setting up a full-stack TypeScript application with a Node.js backend 🟩 and your choice of frontend framework: React ⚛️, Angular 🅰️, or Vue 🟢. 
+
+This project includes pre-configured setups for:
+
+- Babel 🐵
+- TypeScript 🔵
+- ESLint 🛠️
+- Prettier 🖋️
+- Jest 🃏
+- Husky 🐶
 
 ## 🚀 Initial Setup
 
