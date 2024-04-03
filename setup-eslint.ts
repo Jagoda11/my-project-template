@@ -138,6 +138,7 @@ rules:
         - plugin:@angular-eslint/recommended
         - plugin:jest/recommended
         - plugin:prettier/recommended
+        - plugin:rxjs/recommended
       parser: '@typescript-eslint/parser'
       parserOptions:
         ecmaVersion: latest
@@ -373,9 +374,12 @@ async function setupFrontend() {
         './frontend',
       )
     } else if (framework === 'angular') {
-      await executeCommand('npm install @angular/core', './frontend')
       await executeCommand(
-        'npm install --save-dev @angular/cli @angular-eslint/eslint-plugin',
+        'npm install @angular/core @angular/router @angular/forms @angular/material rxjs @ngrx/store',
+        './frontend',
+      )
+      await executeCommand(
+        'npm install --save-dev @angular/cli @angular-eslint/eslint-plugin jest @types/jest jest-preset-angular eslint-plugin-rxjs',
         './frontend',
       )
     } else if (framework === 'vue') {
