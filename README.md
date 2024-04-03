@@ -53,6 +53,11 @@ To run these scripts, use `npm run <script-name>`:
 - `prepare`: 🐾 Sets up Husky for managing git hooks.
 
 
+## 💖 Support
+
+If you appreciate my work and would like to support me, consider sponsoring me on [GitHub Sponsors](https://github.com/sponsors/[YourUsername]). Your support is greatly appreciated and helps me continue my contributions to open source and volunteer work.
+
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md).
