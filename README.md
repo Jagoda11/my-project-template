@@ -1,51 +1,49 @@
-# 🚀 Project Name
+# 🚀 TypeScript Full-Stack Template
 
-A brief description of what this project does and who it's for. Replace this text with your own project description.
+This project is a template for setting up a full-stack TypeScript application with a Node.js backend and your choice of frontend framework (React, Angular, or Vue). It includes pre-configured setups for Babel, TypeScript, ESLint, Prettier, Jest, and Husky.
 
-## 🌟 Features
+## 🚀 Initial Setup
 
-- Feature 1: Describe what it does.
-- Feature 2: Describe what it does.
-- Feature 3: Describe what it does.
-
-## 🛠️ Installation
-
-Follow these steps to install the project:
+First, install the project dependencies:
 
 ```bash
-git clone https://github.com/your-user/your-project-name.git
-cd project-name
 npm install
 ```
 
-## 💻 Usage
-
-Here's how to get started with the project:
+Next, run the `setup-eslint` script to choose your frontend and backend frameworks:
 
 ```bash
-npm start
+npm run setup-eslint
 ```
 
-## 🛠️ Building
+This script will prompt you to choose a frontend framework (React, Angular, or Vue) and a backend framework is always Node. It will then install the necessary dependencies and configure the project for the chosen frameworks.
 
-To build the project, run:
+> ⚠️ **Important:** After the initial setup, manually delete the `setup-eslint.ts` file and its reference in the `package.json` scripts. 🗑️
 
-```bash
-npm run build
-```
+## 📜 Scripts
 
-## 🧪 Testing
+- `start`: Builds the TypeScript code and starts the application.
+- `build`: Compiles the TypeScript code using the TypeScript compiler (`tsc`).
+- `test`: Runs tests using Jest and generates a coverage report.
+- `format`: Formats the code using Prettier.
+- `lint`: Lints all JavaScript and TypeScript files in the project using ESLint.
+- `lint:root`: Lints JavaScript and TypeScript files in the root directory, excluding the `frontend` and `backend` directories.
+- `lint:frontend`: Lints JavaScript and TypeScript files in the `frontend` directory.
+- `lint:backend`: Lints JavaScript and TypeScript files in the `backend` directory.
+- `setup-eslint`: Runs the setup script to choose the frontend and backend frameworks, install the necessary dependencies, and configure the project.
+- `precommit`: Lints the code and runs tests before each commit.
+- `pretest`: Lints the code before running tests.
+- `watch`: Runs tests in watch mode using Jest.
+- `debug`: Starts the application in debug mode using `nodemon`.
+- `clean`: Removes the `node_modules` directory and `package-lock.json` file.
+- `prepare`: Sets up Husky for managing git hooks.
 
-Run the tests with the following command:
-
-```bash
-npm test
-```
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md).
 for details on our code of conduct and the process for submitting pull requests.
+
 
 ## 📝 License
 
