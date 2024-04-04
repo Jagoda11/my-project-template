@@ -31,9 +31,10 @@ This script will prompt you to choose a frontend framework (React ⚛️, Angula
 To remove the setup script and its references after the initial setup, you can run the following command in your terminal:
 
 ```bash
-rm ./setup-eslint.ts && sed -i '' '/"setup-eslint":/d' package.json && rm FRAMEWORKS_GUIDE.md
+rm ./setup-eslint.ts && sed -i '' '/"setup-eslint":/d' package.json && rm FRAMEWORKS_GUIDE.md && sed -i '' '/Frameworks Guide/d' README.md
 ```
 
+> ⚠️ **Important:** After running the above command, make sure to update your `README.md` file to remove any scripts or references that are no longer needed. Also, remember to update the `CONTRIBUTING.md` file and any other files that contain a GitHub link to this project.
 
 ## ⚠️ Note on Commits
 If you're having trouble making a commit, it might be due to the `precommit` hook, which runs the `lint` and `test` scripts before each commit. If these scripts find any errors, the commit will be blocked. Check the output for any lint or test errors and fix them before trying to commit again.
@@ -58,6 +59,10 @@ To run these scripts, use `npm run <script-name>`:
 - `clean`: 🧽 Removes the `node_modules` directory and `package-lock.json` file.
 - `prepare`: 🐾 Sets up Husky for managing git hooks.
 
+
+## 📚 Frameworks Guide
+
+For more information on how to choose and work with different frontend and backend frameworks in this project, please read the [Frameworks Guide](FRAMEWORKS_GUIDE.md).
 
 ## 💖 Support
 
