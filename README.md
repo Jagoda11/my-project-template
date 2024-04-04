@@ -66,7 +66,7 @@ If you appreciate my work and would like to support me, consider sponsoring me o
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read the [Contributing Guide](contributing.md).
+Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md).
 for details on our code of conduct and the process for submitting pull requests.
 
 ## 📜 Code of Conduct
