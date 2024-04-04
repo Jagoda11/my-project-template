@@ -63,11 +63,14 @@ If you appreciate my work and would like to support me, consider sponsoring me o
 Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md).
 for details on our code of conduct and the process for submitting pull requests.
 
+## 📜 Code of Conduct
+
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
-[ISC](LICENSE) © 2024 Jagoda11
+© 2024 Jagoda11
 
 This README template provides a basic structure for documenting your projects. You can enhance and modify it for each new project based on the project's unique aspects and requirements.
