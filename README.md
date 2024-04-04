@@ -26,8 +26,14 @@ npm run setup-eslint
 ```
 
 This script will prompt you to choose a frontend framework (React ⚛️, Angular 🅰️, or Vue 🟢) and a backend framework is always Node. It will then install the necessary dependencies and configure the project for the chosen frameworks.
+> ⚠️ **Important:** After the initial setup, manually delete the `setup-eslint.ts` file and its reference in the `package.json` scripts. Also, don't forget to remove the `FRAMEWORKS_GUIDE.md` file as it is no longer needed. 🗑️
 
-> ⚠️ **Important:** After the initial setup, manually delete the `setup-eslint.ts` file and its reference in the `package.json` scripts. 🗑️
+To remove the setup script and its references after the initial setup, you can run the following command in your terminal:
+
+```bash
+rm ./setup-eslint.ts && sed -i '' '/"setup-eslint":/d' package.json && rm FRAMEWORKS_GUIDE.md
+```
+
 
 ## ⚠️ Note on Commits
 If you're having trouble making a commit, it might be due to the `precommit` hook, which runs the `lint` and `test` scripts before each commit. If these scripts find any errors, the commit will be blocked. Check the output for any lint or test errors and fix them before trying to commit again.
