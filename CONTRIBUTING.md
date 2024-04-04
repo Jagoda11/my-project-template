@@ -1,7 +1,7 @@
 ## 🤝 Contributing
 
-[fork]: https://github.com/yourusername/my-template-project/fork
-[pr]: https://github.com/yourusername/my-template-project/compare
+[fork]: https://github.com/Jagoda11/my-project-template/fork
+[pr]: https://github.com/Jagoda11/my-project-template/compare
 [code-of-conduct]: CODE_OF_CONDUCT.md
 
 Hello there! 👋 We're thrilled that you're considering contributing to this project. Your help is essential for keeping it great. 🙌
