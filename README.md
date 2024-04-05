@@ -25,7 +25,7 @@ Next, run the `setup-eslint` script to choose your frontend and backend framewor
 npm run setup-eslint
 ```
 
-This script will prompt you to choose a frontend framework (React ⚛️, Angular 🅰️, or Vue 🟢) and a backend framework is always Node. It will then install the necessary dependencies and configure the project for the chosen frameworks.
+This script will prompt you to choose a frontend framework (React ⚛️, Angular 🅰️, or Vue 🟢), css library and a backend framework is always Node. It will then install the necessary dependencies and configure the project for the chosen frameworks.
 > ⚠️ **Important:** After the initial setup, manually delete the `setup-eslint.ts` file and its reference in the `package.json` scripts. Also, don't forget to remove the `FRAMEWORKS_GUIDE.md` file as it is no longer needed. 🗑️
 
 To remove the setup script and its references after the initial setup, you can run the following command in your terminal:
