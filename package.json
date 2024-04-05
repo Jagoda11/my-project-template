@@ -8,7 +8,7 @@
     "build": "echo '🔨 Building the app...' && tsc",
     "test": "echo '🧪 Running tests...' && jest --config jest.config.cjs --coverage",
     "format": "echo '🖋️ Formatting code...' && prettier --write .",
-    "lint": "echo '🧹 Linting code...' && eslint './**/*.{js,ts}'",
+    "lint": "echo '🧹 Linting code...' && eslint './**/*.{js,ts}' --ignore-path eslintignore",
     "lint:root": "echo '🧹 Linting root code...' && eslint './**/*.{js,ts}' --ignore-pattern 'frontend/' --ignore-pattern 'backend/'",
     "lint:frontend": "echo '🧹 Linting frontend code...' && eslint './frontend/**/*.{js,ts}'",
     "lint:backend": "echo '🧹 Linting backend code...' && eslint './backend/**/*.{js,ts}'",
@@ -32,11 +32,11 @@
   },
   "homepage": "https://github.com/yourusername/my-template-project#readme",
   "devDependencies": {
-    "@babel/core": "^7.24.3",
-    "@babel/preset-env": "^7.24.3",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "@babel/preset-typescript": "^7.24.1",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.3",
+    "@types/node": "^20.12.4",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
     "babel-loader": "^9.1.3",
@@ -50,7 +50,7 @@
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "readline-sync": "^1.4.10",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.4"
   },
   "dependencies": {
     "express": "^4.19.2"

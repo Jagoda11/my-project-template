@@ -55,6 +55,8 @@ rules:
 overrides:
   - files:
       - '*.d.ts'
+      - '*.ts'
     rules:
       'no-unused-vars': 'off'
+      '@typescript-eslint/no-unused-vars': 'warn'
       'prettier/prettier': 'off'

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as childProcess from 'child_process'
 import * as fs from 'fs'
 import * as readline from 'readline'
@@ -330,31 +331,33 @@ async function setupFrontend() {
       return
     }
 
+    type FrontendFrameworks = {
+      [key: string]: 'react' | 'angular' | 'vue'
+    }
+    const frontendFrameworks: FrontendFrameworks = {
+      r: 'react',
+      react: 'react',
+      a: 'angular',
+      angular: 'angular',
+      v: 'vue',
+      vue: 'vue',
+    }
+
     const frontend = await askQuestion(
       '🔧 Which frontend framework do you want to install (React/Angular/Vue)? ',
     )
+    const frontendLower = frontend.toLowerCase()
 
-    let framework
-    if (frontend.toLowerCase() === 'r' || frontend.toLowerCase() === 'react') {
-      framework = 'react'
-    } else if (
-      frontend.toLowerCase() === 'a' ||
-      frontend.toLowerCase() === 'angular'
+    if (
+      !Object.prototype.hasOwnProperty.call(frontendFrameworks, frontendLower)
     ) {
-      framework = 'angular'
-    } else if (
-      frontend.toLowerCase() === 'v' ||
-      frontend.toLowerCase() === 'vue'
-    ) {
-      framework = 'vue'
-    }
-
-    if (!framework) {
       console.error(
         '❌ Invalid framework. Please enter React, Angular, or Vue.',
       )
       return
     }
+
+    const framework = frontendFrameworks[frontendLower]
 
     console.log(`🚀 Setting up ${framework} frontend...`)
 
@@ -364,45 +367,125 @@ async function setupFrontend() {
       framework,
     )
 
-    if (framework === 'react') {
-      await executeCommand(
-        'npm install react react-dom react-router-dom redux react-redux axios',
-        './frontend',
-      )
-      await executeCommand(
-        'npm install --save-dev @types/react @types/react-dom @types/react-router-dom @types/react-redux eslint-plugin-react eslint-plugin-react-hooks',
-        './frontend',
-      )
-    } else if (framework === 'angular') {
-      await executeCommand(
-        'npm install @angular/core @angular/router @angular/forms @angular/material rxjs @ngrx/store',
-        './frontend',
-      )
-      await executeCommand(
-        'npm install --save-dev @angular/cli @angular-eslint/eslint-plugin jest @types/jest jest-preset-angular eslint-plugin-rxjs',
-        './frontend',
-      )
-    } else if (framework === 'vue') {
-      await executeCommand('npm install vue', './frontend')
-      await executeCommand(
-        'npm install --save-dev eslint-plugin-vue vite',
-        './frontend',
-      )
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    type NpmPackages = {
+      [key in 'react' | 'angular' | 'vue']: {
+        dependencies: string
+        devDependencies: string
+      }
+    }
+
+    const npmPackages: NpmPackages = {
+      react: {
+        dependencies:
+          'react react-dom react-router-dom redux react-redux axios',
+        devDependencies:
+          '@types/react @types/react-dom @types/react-router-dom @types/react-redux eslint-plugin-react eslint-plugin-react-hooks',
+      },
+      angular: {
+        dependencies:
+          '@angular/core @angular/router @angular/forms @angular/material rxjs @ngrx/store',
+        devDependencies:
+          '@angular/cli @angular-eslint/eslint-plugin jest @types/jest jest-preset-angular eslint-plugin-rxjs',
+      },
+      vue: {
+        dependencies: 'vue',
+        devDependencies: 'eslint-plugin-vue vite',
+      },
+    }
+
+    await executeCommand(
+      `npm install ${npmPackages[framework].dependencies}`,
+      './frontend',
+    )
+    await executeCommand(
+      `npm install --save-dev ${npmPackages[framework].devDependencies}`,
+      './frontend',
+    )
+
+    if (framework === 'vue') {
       const viteConfigContent = `
-      import { defineConfig } from 'vite'
-      import vue from '@vitejs/plugin-vue'
-      import typescript from '@rollup/plugin-typescript'
-      
-      export default defineConfig({
-        plugins: [vue(), typescript()],
-      })
-        `
+        import { defineConfig } from 'vite'
+        import vue from '@vitejs/plugin-vue'
+        import typescript from '@rollup/plugin-typescript'
+        
+        export default defineConfig({
+          plugins: [vue(), typescript()],
+        })
+      `
 
       fs.writeFileSync('./frontend/vite.config.js', viteConfigContent)
       console.log('📝 Created vite.config.js in ./frontend')
     }
   } catch (error) {
     console.error(`❌ Error setting up frontend: ${error}`)
+  }
+}
+const cssFrameworks: { [key: string]: { [key: string]: string } } = {
+  b: {
+    react: 'bootstrap',
+    angular: 'bootstrap',
+    vue: 'bootstrap',
+  },
+  bootstrap: {
+    react: 'bootstrap',
+    angular: 'bootstrap',
+    vue: 'bootstrap',
+  },
+  t: {
+    react: 'tailwindcss postcss autoprefixer',
+    angular: 'tailwindcss postcss autoprefixer',
+    vue: 'tailwindcss postcss autoprefixer',
+  },
+  tailwind: {
+    react: 'tailwindcss postcss autoprefixer',
+    angular: 'tailwindcss postcss autoprefixer',
+    vue: 'tailwindcss postcss autoprefixer',
+  },
+  s: {
+    react: 'semantic-ui-react semantic-ui-css',
+    angular: '@angular-ex/semantic-ui',
+    vue: 'semantic-ui-vue',
+  },
+  semantic: {
+    react: 'semantic-ui-react semantic-ui-css',
+    angular: '@angular-ex/semantic-ui',
+    vue: 'semantic-ui-vue',
+  },
+  m: {
+    react: '@material-ui/core',
+    angular: '@angular/material',
+    vue: 'vue-material',
+  },
+  'material-ui': {
+    react: '@material-ui/core',
+    angular: '@angular/material',
+    vue: 'vue-material',
+  },
+}
+
+async function setupCSSFramework() {
+  try {
+    const frontendFramework = await askQuestion(
+      '🔧 Which frontend framework are you using (React/Angular/Vue)? ',
+    )
+    const cssFramework = await askQuestion(
+      '🎨 Which CSS framework would you like to use? (B/Bootstrap, T/Tailwind, S/Semantic, M/Material-UI, N/None): ',
+    )
+    const cssFrameworkLower = cssFramework.toLowerCase()
+
+    if (
+      !Object.prototype.hasOwnProperty.call(cssFrameworks, cssFrameworkLower)
+    ) {
+      console.log('❌ Invalid option. No CSS framework will be installed.')
+      return
+    }
+    const cssPackages =
+      cssFrameworks[cssFrameworkLower][frontendFramework.toLowerCase()]
+    await executeCommand(`npm install ${cssPackages}`, './frontend')
+    console.log(`🎨 ${cssFramework} installed.`)
+  } catch (error) {
+    console.error(`❌ Error setting up CSS framework: ${error}`)
   }
 }
 
@@ -432,6 +515,7 @@ async function setupBackend() {
 ;(async () => {
   try {
     await setupFrontend()
+    await setupCSSFramework()
     await setupBackend()
   } catch (error) {
     console.error(`❌ Error setting up project: ${error}`)
