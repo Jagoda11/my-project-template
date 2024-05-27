@@ -11,6 +11,8 @@ jobs:
   welcome:
     runs-on: ubuntu-latest
     steps:
+      - name: 🎭 Mask GitHub Token
+        run: echo "::add-mask::${{ secrets.GITHUB_TOKEN }}"
       - name: Post welcome message 📨
         uses: actions/github-script@v5
         with:
