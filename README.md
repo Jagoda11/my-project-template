@@ -1,6 +1,6 @@
 # 🚀 TypeScript Full-Stack Template
 
-This project is a template for setting up a full-stack TypeScript application with a Node.js backend 🟩 and your choice of frontend framework: React ⚛️, Angular 🅰️, or Vue 🟢. 
+This project is a template for setting up a full-stack TypeScript application with a Node.js backend 🟩 and your choice of frontend framework: React ⚛️, Angular 🅰️, or Vue 🟢.
 
 This project includes pre-configured setups for:
 
@@ -37,6 +37,7 @@ rm ./setup-eslint.ts && sed -i '' '/"setup-eslint":/d' package.json && rm FRAMEW
 > ⚠️ **Important:** After running the above command, make sure to update your `README.md` file to remove any scripts or references that are no longer needed. Also, remember to update the `CONTRIBUTING.md` file and any other files that contain a GitHub link to this project.
 
 ## ⚠️ Note on Commits
+
 If you're having trouble making a commit, it might be due to the `precommit` hook, which runs the `lint` and `test` scripts before each commit. If these scripts find any errors, the commit will be blocked. Check the output for any lint or test errors and fix them before trying to commit again.
 
 ## 📜 Scripts
@@ -59,6 +60,19 @@ To run these scripts, use `npm run <script-name>`:
 - `clean`: 🧽 Removes the `node_modules` directory and `package-lock.json` file.
 - `prepare`: 🐾 Sets up Husky for managing git hooks.
 
+## 🤖 GitHub Actions Workflows
+
+This template includes several GitHub Actions workflows that automate various tasks:
+
+- `ci.yml`: Runs your project's continuous integration (CI) tasks.
+- `close-merged-pull-requests.yml`: Automatically closes pull requests that have been merged.
+- `close-stale-issues-and-prs.yml`: Closes stale issues and pull requests.
+- `label-new-pull-requests.yml`: Automatically adds labels to new pull requests.
+- `thank-contributors-on-issue-close.yml`: Thanks contributors when an issue they commented on is closed.
+- `welcome-new-pull-requests.yml`: Posts a welcome message on new pull requests.
+- `welcome.yml`: Posts a welcome message on new issues.
+
+These workflows use the `secrets.GITHUB_TOKEN` secret, which GitHub automatically creates for every repository. You can create a personal access token and add it as a secret in your repository. For more information, see [Creating and storing encrypted secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
 
 ## 📚 Frameworks Guide
 
@@ -67,7 +81,6 @@ For more information on how to choose and work with different frontend and backe
 ## 💖 Support
 
 If you appreciate my work and would like to support me, consider sponsoring me on [GitHub Sponsors](https://github.com/sponsors/[YourUsername]). Your support is greatly appreciated and helps me continue my contributions to open source and volunteer work.
-
 
 ## 🤝 Contributing
 
