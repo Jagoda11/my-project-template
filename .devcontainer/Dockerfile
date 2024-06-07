@@ -12,9 +12,12 @@ LABEL name="GitHub Codespaces with Datadog" \
       summary="GitHub Codespaces with Datadog" \
       description="This is a custom container used for GitHub Codespaces."
 
+# Set environment variables
+ENV DD_API_KEY=${DD_API_KEY}
+
 # Install any needed packages specified in requirements.txt
 COPY requirements.txt /app
 RUN pip install --no-cache-dir -r requirements
 
 # Install Datadog agent
-RUN DD_SITE=datadoghq.eu DD_HOSTNAME=github-codespace bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+RUN DD_SITE=datadoghq.eu DD_HOSTNAME=github-codespace DD_API_KEY=${DD_API_KEY} bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
