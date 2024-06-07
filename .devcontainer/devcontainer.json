@@ -1,0 +1,12 @@
+{
+  "name": "GitHub Codespaces with Datadog",
+  "dockerFile": "Dockerfile",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "containerEnv": {
+    "DD_API_KEY": "${localEnv:DD_API_KEY}"
+  },
+  "forwardPorts": [],
+  "postCreateCommand": "echo 'Datadog agent installed!'"
+}
