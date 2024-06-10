@@ -74,6 +74,21 @@ This template includes several GitHub Actions workflows that automate various ta
 
 These workflows use the `secrets.GITHUB_TOKEN` secret, which GitHub automatically creates for every repository. You can create a personal access token and add it as a secret in your repository. For more information, see [Creating and storing encrypted secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
 
+## 🌐 GitHub Codespaces Support
+
+This project includes a `.devcontainer.json` file which allows you to work on this project in a Docker container using [GitHub Codespaces](https://github.com/features/codespaces). This helps to maintain a consistent development environment, making it easier for you to collaborate with others without having to worry about individual setup.
+
+GitHub Codespaces configures your development environment based on your project's needs using this file. When you create a new codespace for this project, the Codespaces environment is automatically configured as per the settings defined in `.devcontainer.json`.
+
+To use GitHub Codespaces:
+
+1. Navigate to the main page of the repository.
+2. Click the Code button and then click "Open with Codespaces".
+3. Click "+ New codespace".
+
+Your development environment is now set up and running in a Docker container in the cloud. All commands you run in the Codespaces terminal will be executed inside the container. Any changes you make to the project will be reflected in the container and vice versa.
+
+
 ## 📚 Frameworks Guide
 
 For more information on how to choose and work with different frontend and backend frameworks in this project, please read the [Frameworks Guide](FRAMEWORKS_GUIDE.md).
