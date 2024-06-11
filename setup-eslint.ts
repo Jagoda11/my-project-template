@@ -36,6 +36,10 @@ function setupEslintAndTsconfig(
   tsconfigName: string,
   framework: string,
 ) {
+  // Ensure the directory exists
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true })
+  }
   if (!fs.existsSync(`${dir}/.eslintrc.yml`)) {
     let eslintContent = 'extends: eslint:recommended'
     if (dir === './backend') {
@@ -395,11 +399,11 @@ async function setupFrontend() {
     }
 
     await executeCommand(
-      `npm install ${npmPackages[framework].dependencies}`,
+      `npm install ${npmPackages[framework].dependencies} --legacy-peer-deps`,
       './frontend',
     )
     await executeCommand(
-      `npm install --save-dev ${npmPackages[framework].devDependencies}`,
+      `npm install --save-dev ${npmPackages[framework].devDependencies} --legacy-peer-deps`,
       './frontend',
     )
 
@@ -482,7 +486,7 @@ async function setupCSSFramework() {
     }
     const cssPackages =
       cssFrameworks[cssFrameworkLower][frontendFramework.toLowerCase()]
-    await executeCommand(`npm install ${cssPackages}`, './frontend')
+    await executeCommand(`npm install ${cssPackages} --legacy-peer-deps`, './frontend')
     console.log(`🎨 ${cssFramework} installed.`)
   } catch (error) {
     console.error(`❌ Error setting up CSS framework: ${error}`)
@@ -512,7 +516,7 @@ async function setupBackend() {
   }
 }
 
-;(async () => {
+(async () => {
   try {
     await setupFrontend()
     await setupCSSFramework()
