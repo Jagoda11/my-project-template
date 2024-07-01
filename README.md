@@ -1,5 +1,14 @@
 # 🚀 TypeScript Full-Stack Template
 
+![License](https://img.shields.io/github/license/Jagoda11/my-project-template?style=flat-square&color=blue)
+![Open Issues](https://img.shields.io/github/issues/Jagoda11/my-project-template?style=flat-square&color=orange)
+![Last Commit](https://img.shields.io/github/last-commit/Jagoda11/my-project-template/main?style=flat-square&color=blue)
+![Build Status](https://github.com/Jagoda11/my-project-template/actions/workflows/ci.yml/badge.svg?branch=main)
+
+
+
+
+
 This project is a template for setting up a full-stack TypeScript application with a Node.js backend 🟩 and your choice of frontend framework: React ⚛️, Angular 🅰️, or Vue 🟢.
 
 This project includes pre-configured setups for:
