@@ -5,10 +5,6 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Jagoda11/my-project-template/main?style=flat-square&color=blue)
 ![Build Status](https://github.com/Jagoda11/my-project-template/actions/workflows/ci.yml/badge.svg?branch=main)
 
-
-
-
-
 This project is a template for setting up a full-stack TypeScript application with a Node.js backend 🟩 and your choice of frontend framework: React ⚛️, Angular 🅰️, or Vue 🟢.
 
 This project includes pre-configured setups for:
@@ -35,6 +31,7 @@ npm run setup-eslint
 ```
 
 This script will prompt you to choose a frontend framework (React ⚛️, Angular 🅰️, or Vue 🟢), css library and a backend framework is always Node. It will then install the necessary dependencies and configure the project for the chosen frameworks.
+
 > ⚠️ **Important:** After the initial setup, manually delete the `setup-eslint.ts` file and its reference in the `package.json` scripts. Also, don't forget to remove the `FRAMEWORKS_GUIDE.md` file as it is no longer needed. 🗑️
 
 To remove the setup script and its references after the initial setup, you can run the following command in your terminal:
@@ -96,7 +93,6 @@ To use GitHub Codespaces:
 3. Click "+ New codespace".
 
 Your development environment is now set up and running in a Docker container in the cloud. All commands you run in the Codespaces terminal will be executed inside the container. Any changes you make to the project will be reflected in the container and vice versa.
-
 
 ## 📚 Frameworks Guide
 

@@ -39,18 +39,18 @@ rules:
   no-path-concat: warn
   '@typescript-eslint/no-explicit-any': 'warn'
   'import/order':
-  - 'error'
-  - groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
-    pathGroups:
-      - pattern: '**'
-        group: 'external'
-        position: 'before'
-    newlines-between: 'always'
-    alphabetize:
-      order: 'asc'
-      caseInsensitive: true
-  'consistent-return': 'error'  # Enforces consistent return in functions extensions for JSX files
-  'no-unused-expressions': 'warn'  # Avoid code that has no effect
+    - 'error'
+    - groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index']
+      pathGroups:
+        - pattern: '**'
+          group: 'external'
+          position: 'before'
+      newlines-between: 'always'
+      alphabetize:
+        order: 'asc'
+        caseInsensitive: true
+  'consistent-return': 'error' # Enforces consistent return in functions extensions for JSX files
+  'no-unused-expressions': 'warn' # Avoid code that has no effect
 
 overrides:
   - files:

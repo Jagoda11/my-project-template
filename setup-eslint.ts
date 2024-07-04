@@ -486,7 +486,10 @@ async function setupCSSFramework() {
     }
     const cssPackages =
       cssFrameworks[cssFrameworkLower][frontendFramework.toLowerCase()]
-    await executeCommand(`npm install ${cssPackages} --legacy-peer-deps`, './frontend')
+    await executeCommand(
+      `npm install ${cssPackages} --legacy-peer-deps`,
+      './frontend',
+    )
     console.log(`🎨 ${cssFramework} installed.`)
   } catch (error) {
     console.error(`❌ Error setting up CSS framework: ${error}`)
@@ -516,7 +519,7 @@ async function setupBackend() {
   }
 }
 
-(async () => {
+;(async () => {
   try {
     await setupFrontend()
     await setupCSSFramework()

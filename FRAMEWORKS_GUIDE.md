@@ -5,12 +5,14 @@ This guide provides detailed information about the `setup-eslint` script, which 
 ## 🛠️ What the Script Does
 
 1. **Frontend Setup**: The script starts by asking if you want to set up a frontend. If you choose 'yes', it then prompts you to select between React, Angular, and Vue.
+
    - Depending on your choice, the script installs the necessary dependencies for the chosen framework and sets up the ESLint and TypeScript configurations tailored for that framework.
    - For React, it installs React-specific packages and sets up ESLint with React and TypeScript rules.
    - For Angular, it installs Angular core packages, configures ESLint with Angular-specific rules, and sets up TypeScript for Angular.
    - For Vue, it installs Vue and its associated tooling, along with setting up ESLint and TypeScript configurations suitable for Vue.
 
 2. **Backend Setup**: The script also asks if you want to set up a Node.js backend. If you confirm, it proceeds to set up a basic Node.js backend environment.
+
    - It installs Express and sets up ESLint and TypeScript configurations optimized for a Node.js backend environment.
 
 3. **Execution**: The script executes commands in the respective directories (`frontend` and `backend`) to ensure that the environment is correctly set up for development.
@@ -40,4 +42,3 @@ This guide provides detailed information about the `setup-eslint` script, which 
 ## Conclusion
 
 By following this guide, you can customize the TypeScript Full-Stack Template to fit your project's needs, ensuring a robust and efficient development process.
-
