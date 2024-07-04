@@ -12,9 +12,6 @@ coverage
 *.prod*
 *.production*
 *.staging*
-*.test*
-*.tests*
-*.testing*
 *.sandbox*
 *.sandboxing*
 *.sandboxed*
