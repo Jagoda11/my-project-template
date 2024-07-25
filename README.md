@@ -4,6 +4,7 @@
 ![Open Issues](https://img.shields.io/github/issues/Jagoda11/my-project-template?style=flat-square&color=orange)
 ![Last Commit](https://img.shields.io/github/last-commit/Jagoda11/my-project-template/main?style=flat-square&color=blue)
 ![Build Status](https://github.com/Jagoda11/my-project-template/actions/workflows/ci.yml/badge.svg?branch=main)
+![TypeScript](https://img.shields.io/github/package-json/dependency-version/Jagoda11/my-project-template/dev/typescript?label=TypeScript)
 
 This project is a template for setting up a full-stack TypeScript application with a Node.js backend 🟩 and your choice of frontend framework: React ⚛️, Angular 🅰️, or Vue 🟢.
 
@@ -116,3 +117,10 @@ Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community appr
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 © 2024 Jagoda11
+
+## 📖 Related Articles
+
+For more insights and detailed guides, check out these related articles:
+
+- [The Power of Project Templates: Boosting Efficiency in Development](https://medium.com/code-like-a-girl/the-power-of-project-templates-boosting-efficiency-in-development-1a61cb6bcdae)
+- [How to Set Up a Template Repository on GitHub](https://medium.com/new-writers-welcome/how-to-set-up-a-template-repository-on-github-0e7446a46817)
