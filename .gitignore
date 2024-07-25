@@ -111,6 +111,8 @@ cypress.env.sandbox.json
 /build/
 /.vite/
 
+.husky/
+
 #lighthouse generated files
 /lighthouse/
 lighthouse-report.html
