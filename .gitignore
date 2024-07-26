@@ -112,7 +112,7 @@ cypress.env.sandbox.json
 /.vite/
 
 # Husky hooks directory
-.husky/
+# .husky/
 
 #lighthouse generated files
 /lighthouse/
