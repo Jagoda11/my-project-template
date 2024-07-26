@@ -7,7 +7,7 @@ coverage
 *.local*
 *.localdev*
 *.local_dev*
-*.dev*
+# *.dev*
 *.development*
 *.prod*
 *.production*
