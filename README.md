@@ -5,6 +5,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Jagoda11/my-project-template/main?style=flat-square&color=blue)
 ![Build Status](https://github.com/Jagoda11/my-project-template/actions/workflows/🚀ci.yml/badge.svg?branch=main)
 ![TypeScript](https://img.shields.io/github/package-json/dependency-version/Jagoda11/my-project-template/dev/typescript?label=TypeScript)
+![Build Status](https://github.com/Jagoda11/my-project-template/actions/workflows/npm-update.yml/badge.svg?branch=master)
 
 This project is a template for setting up a full-stack TypeScript application with a Node.js backend 🟩 and your choice of frontend framework: React ⚛️, Angular 🅰️, or Vue 🟢.
 
