@@ -1,4 +1,4 @@
-name: Label New Pull Requests
+name: 🏷️Label New Pull Requests
 
 on:
   pull_request:

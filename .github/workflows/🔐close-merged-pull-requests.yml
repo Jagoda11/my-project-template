@@ -1,4 +1,4 @@
-name: Close Merged Pull Requests
+name: 🔐Close Merged Pull Requests
 
 on:
   pull_request:
