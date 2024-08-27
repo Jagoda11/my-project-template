@@ -18,6 +18,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install dependencies
         run: npm ci
+      - name: 🔄 Ensure package-lockjson is up-to-date
+        run: npm install --package-lock-only
       - name: 🧹 Lint code
         run: npm run lint
       - name: 🔨 Build
