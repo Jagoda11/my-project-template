@@ -45,7 +45,7 @@ jobs:
       - name: 📝 Commit changes
         if: success()
         run: |
-          git config --local user.name "github-actions[bot]"
+          git config --local user.name "Debugging Duck :duck:"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "📦 chore: update all npm dependencies except ESLint"
