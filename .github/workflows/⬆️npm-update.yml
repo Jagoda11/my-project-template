@@ -21,13 +21,20 @@ jobs:
         with:
           node-version: '20'
 
-      - name: 📦 Install dependencies
-        run: npm install
+      - name: 🗑️ Remove package-lock.json
+        run: rm -f package-lock.json
+
+      - name: 📦 Install npm-check-updates
+        run: npm install -g npm-check-updates
 
       - name: ⬆️ Update all packages except ESLint
         run: |
-          npm update --legacy-peer-deps
+          ncu -x eslint -u
+          npm install
           npm install eslint@8.57.0 --save-dev
+
+      - name: 📦 Update dependencies with legacy peer deps
+        run: npm update --legacy-peer-deps
 
       - name: 🎭 Mask Debricked credentials
         run: |
