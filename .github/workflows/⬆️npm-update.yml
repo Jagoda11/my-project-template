@@ -49,6 +49,12 @@ jobs:
         run: |
           debricked scan -t ${{ secrets.DEBRICKED_TOKEN }} -r ${{ github.repository }} -c ${{ github.sha }}
 
+      - name: 🏗️ Build project
+        run: npm run build
+
+      - name: ✅ Run tests
+        run: npm test
+        
       - name: 📝 Commit changes
         if: success()
         run: |
