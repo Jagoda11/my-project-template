@@ -40,177 +40,268 @@ function setupEslintAndTsconfig(
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true })
   }
-  if (!fs.existsSync(`${dir}/.eslintrc.yml`)) {
-    let eslintContent = 'extends: eslint:recommended'
+
+  // Create eslint.config.mjs instead of .eslintrc.yml
+  if (!fs.existsSync(`${dir}/eslint.config.mjs`)) {
+    let eslintContent = `export default [
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: true,
+    },
+    rules: {
+      'no-unused-vars': 'warn',
+    }
+  }
+];`
+
     if (dir === './backend') {
-      eslintContent = `
-  env:
-    node: true
-    es2021: true
-    jest: true
-  extends:
-    - eslint:recommended
-    - plugin:@typescript-eslint/recommended
-    - plugin:jest/recommended
-    - plugin:import/errors
-    - plugin:import/warnings
-    - plugin:prettier/recommended
-  parser: '@typescript-eslint/parser'
-  parserOptions:
-    ecmaVersion: latest
-    sourceType: 'module'
-  plugins:
-    - '@typescript-eslint'
-    - jest 
-    - import
-  rules:
-    'no-shadow': 'error'
-    'prettier/prettier': 'error'
-    'eqeqeq':
-      - 'error'
-      - 'always'
-    'curly':
-      - 'error'
-      - 'all'
-    'no-unused-vars': 'warn'
-    'no-redeclare': 'error'
-    'prefer-const': 'error'
-    'no-var': 'error'
-    'global-require': 'warn'
-    'handle-callback-err': 'warn'
-    'no-buffer-constructor': 'warn'
-    'no-new-require': 'warn'
-    'no-path-concat': 'warn'
-    '@typescript-eslint/no-explicit-any': 'warn'
-    'import/order':
-      - 'error'
-      - groups: ['builtin', 'external', 'internal','parent', 'sibling', 'index']
-        newlines-between: 'always'
-        alphabetize:
-          order: 'asc'
-          caseInsensitive: true
-    'consistent-return': 'error'
-    'no-unused-expressions': 'warn'
-    'no-useless-constructor': 'warn'
-      `
+      eslintContent = `// ESLint flat config for backend
+import typescript from '@typescript-eslint/eslint-plugin'
+import parser from '@typescript-eslint/parser'
+import importPlugin from 'eslint-plugin-import'
+import jest from 'eslint-plugin-jest'
+import prettier from 'eslint-plugin-prettier'
+
+export default [
+  {
+    ignores: [
+      'node_modules/',
+      'dist/',
+      'package-lock.json',
+      '*.min.js',
+      'coverage/',
+      'build/',
+    ],
+  },
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      globals: {
+        node: true,
+        jest: true,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': typescript,
+      'jest': jest,
+      'import': importPlugin,
+      'prettier': prettier,
+    },
+    rules: {
+      'no-shadow': 'error',
+      'prettier/prettier': 'error',
+      'eqeqeq': ['error', 'always'],
+      'curly': ['error', 'all'],
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'no-redeclare': 'error',
+      'prefer-const': 'error',
+      'no-var': 'error',
+      'global-require': 'warn',
+      'handle-callback-err': 'warn',
+      'no-buffer-constructor': 'warn',
+      'no-new-require': 'warn',
+      'no-path-concat': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'import/order': [
+        'error',
+        {
+          'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          'newlines-between': 'always',
+          'alphabetize': {
+            'order': 'asc',
+            'caseInsensitive': true
+          }
+        }
+      ],
+      'consistent-return': 'error',
+      'no-unused-expressions': 'warn',
+      'no-useless-constructor': 'warn'
+    }
+  }
+];`
     } else if (dir === './frontend') {
       if (framework === 'react') {
-        eslintContent = `
-env:
-  browser: true
-  es2021: true
-  jest: true
-extends:
-  - eslint:recommended
-  - plugin:react/recommended
-  - plugin:@typescript-eslint/recommended
-  - plugin:jest/recommended
-  - plugin:prettier/recommended 
-parser: '@typescript-eslint/parser'
-parserOptions:
-  ecmaVersion: latest
-  sourceType: 'module'
-plugins:
-  - '@typescript-eslint'
-  - jest
-  - prettier 
-  - react-hooks
-rules:
-  prettier/prettier: 'error'  # Enforce Prettier formatting
-  react/jsx-filename-extension:
-    - 1
-    - { extensions: ['.tsx'] }  # Enforce the use of .tsx extension for JSX files
-  react/react-in-jsx-scope: 'off'  # Not needed with React 17+
-  '@typescript-eslint/explicit-module-boundary-types': 'warn'  # Ensure functions have explicit return types
-  '@typescript-eslint/no-unused-vars': 'warn'  # Warn about unused variables
-  '@typescript-eslint/no-explicit-any': 'warn'  # Warn about usage of the any type
-  'no-console': 'warn'
-  'jest/no-disabled-tests': 'warn'  # Warn about disabled tests
-  'jest/no-focused-tests': 'error'  # Error on focused tests
-  'jest/no-identical-title': 'error'
-  react-hooks/rules-of-hooks: 'error'
-  react-hooks/exhaustive-deps: 'warn'
-        `
+        eslintContent = `// ESLint flat config for React frontend
+import typescript from '@typescript-eslint/eslint-plugin'
+import parser from '@typescript-eslint/parser'
+import jest from 'eslint-plugin-jest'
+import reactPlugin from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import prettier from 'eslint-plugin-prettier'
+
+export default [
+  {
+    ignores: [
+      'node_modules/',
+      'dist/',
+      'package-lock.json',
+      '*.min.js',
+      'coverage/',
+      'build/',
+    ],
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.jsx'],
+    languageOptions: {
+      parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        browser: true,
+        jest: true,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': typescript,
+      'jest': jest,
+      'prettier': prettier,
+      'react': reactPlugin,
+      'react-hooks': reactHooks,
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+    rules: {
+      'prettier/prettier': 'error',
+      'react/jsx-filename-extension': [1, { 'extensions': ['.tsx'] }],
+      'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-console': 'warn',
+      'jest/no-disabled-tests': 'warn',
+      'jest/no-focused-tests': 'error',
+      'jest/no-identical-title': 'error',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn'
+    }
+  }
+];`
       } else if (framework === 'angular') {
-        eslintContent = `
-      env:
-        browser: true
-        es2021: true
-        jest: true
-      extends:
-        - eslint:recommended
-        - plugin:@typescript-eslint/recommended
-        - plugin:@angular-eslint/recommended
-        - plugin:jest/recommended
-        - plugin:prettier/recommended
-        - plugin:rxjs/recommended
-      parser: '@typescript-eslint/parser'
-      parserOptions:
-        ecmaVersion: latest
-        sourceType: 'module'
-        project: ['./tsconfig.json']  # Adjust if your project has multiple or different tsconfig files
-      plugins:
-        - '@typescript-eslint'
-        - '@angular-eslint'
-        - jest
-        - prettier
-      rules:
-        prettier/prettier: 'error'
-        '@typescript-eslint/explicit-module-boundary-types': 'warn'
-        '@typescript-eslint/no-unused-vars': 'warn'
-        '@typescript-eslint/no-explicit-any': 'warn'
-        'no-console': 'warn'
-        '@angular-eslint/component-selector':
-          ['error', { type: 'element', prefix: 'app', style: 'kebab-case' }]
-        '@angular-eslint/directive-selector':
-          ['error', { type: 'attribute', prefix: 'app', style: 'camelCase' }]
-          `
-        // eslintContent for Angular
+        eslintContent = `// ESLint flat config for Angular frontend
+import typescript from '@typescript-eslint/eslint-plugin'
+import parser from '@typescript-eslint/parser'
+import angularEslint from '@angular-eslint/eslint-plugin'
+import jest from 'eslint-plugin-jest'
+import rxjsPlugin from 'eslint-plugin-rxjs'
+import prettier from 'eslint-plugin-prettier'
+
+export default [
+  {
+    ignores: [
+      'node_modules/',
+      'dist/',
+      'package-lock.json',
+      '*.min.js',
+      'coverage/',
+      'build/',
+    ],
+  },
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parser,
+      parserOptions: {
+        project: ['./tsconfig.json'],
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      globals: {
+        browser: true,
+        jest: true,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': typescript,
+      '@angular-eslint': angularEslint,
+      'jest': jest,
+      'rxjs': rxjsPlugin,
+      'prettier': prettier,
+    },
+    rules: {
+      'prettier/prettier': 'error',
+      '@typescript-eslint/explicit-module-boundary-types': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-console': 'warn',
+      '@angular-eslint/component-selector': ['error', { 'type': 'element', 'prefix': 'app', 'style': 'kebab-case' }],
+      '@angular-eslint/directive-selector': ['error', { 'type': 'attribute', 'prefix': 'app', 'style': 'camelCase' }]
+    }
+  }
+];`
       } else if (framework === 'vue') {
-        eslintContent = `
-env:
-  browser: true
-  es2021: true
-  jest: true
-extends:
-  - eslint:recommended
-  - plugin:@typescript-eslint/recommended
-  - plugin:vue/vue3-recommended
-  - plugin:jest/recommended
-  - plugin:prettier/recommended
-parser: '@typescript-eslint/parser'
-parserOptions:
-  ecmaVersion: latest
-  sourceType: 'module'
-  extraFileExtensions: ['.vue']
-  project: ['./tsconfig.json']  # Your tsconfig file
-plugins:
-  - '@typescript-eslint'
-  - vue
-  - jest
-  - prettier
-rules:
-  prettier/prettier: 'error'
-  '@typescript-eslint/explicit-module-boundary-types': 'warn'
-  '@typescript-eslint/no-unused-vars': 'warn'
-  '@typescript-eslint/no-explicit-any': 'warn'
-  'no-console': 'warn'
-  # Vue 3 specific rules
-  'vue/no-unused-vars': 'warn'
-  'vue/no-unused-components': 'warn'
-  'vue/multi-word-component-names': 'error'
-  'vue/component-tags-order': ['error', {
-    'order': ['template', 'script', 'style']
-  }]
-  'vue/require-default-prop': 'off'
-  'vue/require-explicit-emits': 'error'
-  'vue/attribute-hyphenation': ['error', 'always', {
-    'ignore': []
-  }]` // eslintContent for Vue
+        eslintContent = `// ESLint flat config for Vue frontend
+import typescript from '@typescript-eslint/eslint-plugin'
+import parser from '@typescript-eslint/parser'
+import jest from 'eslint-plugin-jest'
+import vuePlugin from 'eslint-plugin-vue'
+import prettier from 'eslint-plugin-prettier'
+
+export default [
+  {
+    ignores: [
+      'node_modules/',
+      'dist/',
+      'package-lock.json',
+      '*.min.js',
+      'coverage/',
+      'build/',
+    ],
+  },
+  {
+    files: ['**/*.ts', '**/*.vue'],
+    languageOptions: {
+      parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        extraFileExtensions: ['.vue'],
+        project: ['./tsconfig.json'],
+      },
+      globals: {
+        browser: true,
+        jest: true,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': typescript,
+      'vue': vuePlugin,
+      'jest': jest,
+      'prettier': prettier,
+    },
+    rules: {
+      'prettier/prettier': 'error',
+      '@typescript-eslint/explicit-module-boundary-types': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-console': 'warn',
+      'vue/no-unused-vars': 'warn',
+      'vue/no-unused-components': 'warn',
+      'vue/multi-word-component-names': 'error',
+      'vue/component-tags-order': ['error', { 'order': ['template', 'script', 'style'] }],
+      'vue/require-default-prop': 'off',
+      'vue/require-explicit-emits': 'error',
+      'vue/attribute-hyphenation': ['error', 'always', { 'ignore': [] }]
+    }
+  }
+];`
       }
     }
-    fs.writeFileSync(`${dir}/.eslintrc.yml`, eslintContent)
-    console.log(`📝 Created .eslintrc.yml in ${dir}`)
+    fs.writeFileSync(`${dir}/eslint.config.mjs`, eslintContent)
+    console.log(`📝 Created eslint.config.mjs in ${dir}`)
   }
 
   if (!fs.existsSync(`${dir}/${tsconfigName}`)) {
