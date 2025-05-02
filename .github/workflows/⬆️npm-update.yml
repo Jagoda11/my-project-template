@@ -26,7 +26,7 @@ jobs:
 
       - name: ⬆️ Update all packages
         run: |
-          ncu -x
+          ncu -u
           npm install
 
       - name: 📦 Update dependencies with legacy peer deps
