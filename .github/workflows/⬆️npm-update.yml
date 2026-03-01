@@ -1,23 +1,64 @@
-# This is an example workflow file
-
-name: Node.js CI
+name: 🚀 Dependency Update and Vulnerability Scan
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '0 0 1 * *' # Runs monthly
+  workflow_dispatch:
 
 jobs:
-  build:
+  update-and-scan:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    - name: Install dependencies
-      run: npm install --legacy-peer-deps
-    - name: Run tests
-      run: npm test
+      - name: 🛠️ Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 🗑️ Remove package-lock.json
+        run: rm -f package-lock.json
+
+      - name: 📦 Install npm-check-updates
+        run: npm install -g npm-check-updates
+
+      - name: ⬆️ Update all npm packages
+        run: |
+          ncu -u
+          npm install
+
+      - name: 📦 Update dependencies with legacy peer deps
+        run: npm update --legacy-peer-deps
+
+      - name: 🎭 Mask Debricked credentials
+        run: |
+          echo "::add-mask::${{ secrets.DEBRICKED_TOKEN }}"
+
+      - name: Install Debricked CLI
+        run: |
+          curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
+          sudo mv debricked /usr/local/bin/debricked
+
+      - name: 🛡️ Debricked Vulnerability Scan
+        run: |
+          debricked scan -t ${{ secrets.DEBRICKED_TOKEN }} -r ${{ github.repository }} -c ${{ github.sha }}
+
+      - name: 🏗️ Build project
+        run: npm run build
+
+      - name: ✅ Run tests
+        run: npm test
+        
+      - name: 📝 Commit changes
+        if: success()
+        run: |
+          git config --local user.name "Debugging Duck 🦆"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "⬆️ update all npm dependencies ⬆️"
+
+      - name: 🚀 Push changes
+        if: success()
+        run: git push
