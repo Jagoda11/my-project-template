@@ -18,7 +18,7 @@
     "watch": "echo '👀 Watching files...' && jest --watch",
     "debug": "echo '🐞 Starting the app in debug mode...' && NODE_ENV=development nodemon --inspect src/index.js",
     "clean": "echo '🧽 Cleaning up...' && rm -rf ./node_modules ./dist && rm package-lock.json",
-    "prepare": "husky install # 🐶 Setting up Husky"
+    "prepare": "test -n \"$CI\" && echo 'Skipping husky in CI' || husky # 🐶 Setting up Husky"
   },
   "repository": {
     "type": "git",
