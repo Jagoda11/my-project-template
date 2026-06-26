@@ -1,6 +1,6 @@
 {
   "name": "My Codespace",
-  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:0-20",
+  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:0-24",
   "customizations": {
     "vscode": {
       "settings": {
