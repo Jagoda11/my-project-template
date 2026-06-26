@@ -14,7 +14,6 @@
     "lib": ["esnext", "dom"],
     "typeRoots": ["node_modules/@types"],
     "resolveJsonModule": true,
-    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "allowJs": true,
     "paths": {
